@@ -4,7 +4,7 @@ stages {
     stage('compile') {
 	    steps { 
 		    echo 'compiling..'
-		    git url: 'https://github.com/lerndevops/samplejavaapp'
+		    git url: 'https://github.com/umashankar24/samplejavaapp'
 		    sh script: '/opt/maven/bin/mvn compile'
 	    }
     }
@@ -39,7 +39,7 @@ stages {
     stage('build & push docker image') {
 	    steps {
 		    sh 'cd $WORKSPACE'
-		    sh 'docker build --file Dockerfile --tag lerndevops/samplejavaapp:$BUILD_NUMBER .'
+		    sh 'docker build --file Dockerfile --tag umashankar24/samplejavaapp:$BUILD_NUMBER .'
 		    withCredentials([string(credentialsId: 'DOCKER_HUB_PWD', variable: 'DOCKER_HUB_PWD')]) {
 			    sh "docker login -u umashankar24 -p ${DOCKER_HUB_PWD}"
 		    }
